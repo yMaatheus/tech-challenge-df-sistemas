@@ -2,7 +2,7 @@ import { ListReviewsUseCase } from '@app/review/use-cases/list-reviews.usecase'
 import { Controller, Get, Param } from '@nestjs/common'
 import { ApiTags, ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger'
 
-@ApiTags('reviews')
+@ApiTags('Reviews')
 @Controller('reviews')
 export class ListReviewsController {
   constructor(private readonly listReviews: ListReviewsUseCase) {}

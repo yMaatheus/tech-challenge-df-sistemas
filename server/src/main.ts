@@ -6,7 +6,9 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { apiReference } from '@scalar/nestjs-api-reference'
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule)
+  const app = await NestFactory.create(AppModule, {
+    cors: true,
+  })
 
   app.useGlobalPipes(
     new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
@@ -32,7 +34,7 @@ async function bootstrap() {
     '/v1/docs',
     apiReference({
       metaData: {
-        title: 'API Documentation',
+        title: 'DFcom Product Review API',
       },
       spec: {
         content: document,

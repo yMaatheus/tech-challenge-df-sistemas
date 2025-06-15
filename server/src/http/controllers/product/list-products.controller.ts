@@ -2,7 +2,7 @@ import { ListProductsUseCase } from '@app/product/use-cases/list-products.usecas
 import { Controller, Get } from '@nestjs/common'
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger'
 
-@ApiTags('products')
+@ApiTags('Products')
 @Controller('products')
 export class ListProductsController {
   constructor(private readonly listProducts: ListProductsUseCase) {}

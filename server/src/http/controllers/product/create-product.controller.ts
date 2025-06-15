@@ -3,7 +3,7 @@ import { CreateProductUseCase } from '@app/product/use-cases/create-product.usec
 import { Controller, Post, Body, HttpCode, HttpStatus } from '@nestjs/common'
 import { ApiTags, ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger'
 
-@ApiTags('products')
+@ApiTags('Products')
 @Controller('products')
 export class CreateProductController {
   constructor(private readonly createProduct: CreateProductUseCase) {}

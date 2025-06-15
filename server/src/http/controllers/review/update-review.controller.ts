@@ -3,7 +3,7 @@ import { UpdateReviewUseCase } from '@app/review/use-cases/update-review.usecase
 import { Controller, Patch, Param, Body, NotFoundException } from '@nestjs/common'
 import { ApiTags, ApiOperation, ApiParam, ApiResponse, ApiBody } from '@nestjs/swagger'
 
-@ApiTags('reviews')
+@ApiTags('Reviews')
 @Controller('reviews')
 export class UpdateReviewController {
   constructor(private readonly updateReview: UpdateReviewUseCase) {}

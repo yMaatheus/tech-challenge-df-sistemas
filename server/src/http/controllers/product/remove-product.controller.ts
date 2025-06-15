@@ -2,7 +2,7 @@ import { RemoveProductUseCase } from '@app/product/use-cases/remove-product.usec
 import { Controller, Delete, Param, NotFoundException } from '@nestjs/common'
 import { ApiTags, ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger'
 
-@ApiTags('products')
+@ApiTags('Products')
 @Controller('products')
 export class RemoveProductController {
   constructor(private readonly removeProduct: RemoveProductUseCase) {}

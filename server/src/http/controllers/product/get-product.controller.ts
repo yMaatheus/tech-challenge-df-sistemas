@@ -2,7 +2,7 @@ import { GetProductUseCase } from '@app/product/use-cases/get-product.usecase'
 import { Controller, Get, Param, NotFoundException } from '@nestjs/common'
 import { ApiTags, ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger'
 
-@ApiTags('products')
+@ApiTags('Products')
 @Controller('products')
 export class GetProductController {
   constructor(private readonly getProduct: GetProductUseCase) {}

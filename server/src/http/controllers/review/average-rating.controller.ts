@@ -2,7 +2,7 @@ import { AverageRatingUseCase } from '@app/review/use-cases/average-rating.useca
 import { Controller, Get, Param } from '@nestjs/common'
 import { ApiTags, ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger'
 
-@ApiTags('reviews')
+@ApiTags('Reviews')
 @Controller('reviews')
 export class AverageRatingController {
   constructor(private readonly averageRating: AverageRatingUseCase) {}

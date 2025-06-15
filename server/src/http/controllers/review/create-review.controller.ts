@@ -3,7 +3,7 @@ import { CreateReviewUseCase } from '@app/review/use-cases/create-review.usecase
 import { Controller, Post, Body, HttpCode, HttpStatus } from '@nestjs/common'
 import { ApiTags, ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger'
 
-@ApiTags('reviews')
+@ApiTags('Reviews')
 @Controller('reviews')
 export class CreateReviewController {
   constructor(private readonly createReview: CreateReviewUseCase) {}

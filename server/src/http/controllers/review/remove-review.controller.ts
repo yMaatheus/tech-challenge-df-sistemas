@@ -2,7 +2,7 @@ import { RemoveReviewUseCase } from '@app/review/use-cases/remove-review.usecase
 import { Controller, Delete, Param, NotFoundException } from '@nestjs/common'
 import { ApiTags, ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger'
 
-@ApiTags('reviews')
+@ApiTags('Reviews')
 @Controller('reviews')
 export class RemoveReviewController {
   constructor(private readonly removeReview: RemoveReviewUseCase) {}

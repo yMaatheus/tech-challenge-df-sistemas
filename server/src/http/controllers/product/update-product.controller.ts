@@ -3,7 +3,7 @@ import { UpdateProductUseCase } from '@app/product/use-cases/update-product.usec
 import { Controller, Patch, Param, Body, NotFoundException } from '@nestjs/common'
 import { ApiTags, ApiOperation, ApiParam, ApiResponse, ApiBody } from '@nestjs/swagger'
 
-@ApiTags('products')
+@ApiTags('Products')
 @Controller('products')
 export class UpdateProductController {
   constructor(private readonly updateProduct: UpdateProductUseCase) {}
