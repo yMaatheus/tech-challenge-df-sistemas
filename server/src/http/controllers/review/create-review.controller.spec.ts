@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing'
-import { CreateReviewController } from './create-review.controller'
 import { CreateReviewUseCase } from '@app/review/use-cases/create-review.usecase'
 import { CreateReviewDto } from '@app/review/dtos/create-review.dto'
 import { Types } from 'mongoose'
 import { ReviewDocument } from '@interface/mongoose/schemas/review.schema'
+import { CreateReviewController } from '@http/controllers/review/create-review.controller'
 
 describe('CreateReviewController', () => {
   let controller: CreateReviewController

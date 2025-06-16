@@ -73,6 +73,7 @@
     "moduleNameMapper": {
       "^@interface/(.*)$": "<rootDir>/interface/$1",
       "^@app/(.*)$": "<rootDir>/app/$1",
+      "^@http/(.*)$": "<rootDir>/http/$1",
       "^@utils/(.*)$": "<rootDir>/utils/$1"
     },
     "rootDir": "src",

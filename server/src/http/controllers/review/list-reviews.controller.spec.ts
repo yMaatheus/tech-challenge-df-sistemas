@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing'
-import { ListReviewsController } from './list-reviews.controller'
 import { ListReviewsUseCase } from '@app/review/use-cases/list-reviews.usecase'
 import { Types } from 'mongoose'
 import { Review } from '@interface/mongoose/schemas/review.schema'
+import { ListReviewsController } from '@http/controllers/review/list-reviews.controller'
 
 describe('ListReviewsController', () => {
   let controller: ListReviewsController
