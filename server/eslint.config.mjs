@@ -10,6 +10,7 @@ export default [
         ignoreUrls: true,
         ignoreComments: false,
       }],
+      'no-undef': 'off'
     },
   },
 ]
