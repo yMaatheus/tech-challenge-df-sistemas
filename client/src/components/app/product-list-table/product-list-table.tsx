@@ -14,11 +14,11 @@ import { ptBR } from "date-fns/locale";
 import type { IProduct } from "@/common";
 import { ProductForm } from "@/components/app/product-form";
 import { ProductListEmpty } from "@/components/app/product-list-empty";
-import { DeleteProductAlertDialog } from "@/components/app/delete-product-alert-dialog/delete-product-alert-dialog";
 import { useProduct } from "@/contexts/use-product";
+import { DeleteAlertDialog } from "@/components/app/delete-alert-dialog";
 
 export function ProductListTable({ products }: { products?: IProduct[] }) {
-  const { handleUpdateProduct } = useProduct();
+  const { handleUpdateProduct, handleDeleteProduct } = useProduct();
 
   return (
     <Table>
@@ -65,8 +65,10 @@ export function ProductListTable({ products }: { products?: IProduct[] }) {
                   }
                 />
 
-                <DeleteProductAlertDialog
-                  product={product}
+                <DeleteAlertDialog
+                  title="Excluir produto"
+                  description={`Tem certeza que deseja excluir o produto "${product?.name}"? Esta ação não pode ser desfeita e todas as avaliações associadas também serão excluídas.`}
+                  onClick={() => handleDeleteProduct(product._id)}
                   triggerBtn={
                     <Button variant="outline" size="icon">
                       <Trash2 className="h-4 w-4" />
