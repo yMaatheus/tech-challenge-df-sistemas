@@ -1,16 +1,17 @@
-import { Product } from '@interface/mongoose/schemas/product.schema'
+import { Product, ProductDocument } from '@interface/mongoose/schemas/product.schema'
+import { ProductRepository } from '@interface/repositories/product-repository'
 import { Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
 
 @Injectable()
-export class ProductRepository {
+export class ProductMongooseRepository implements ProductRepository {
   constructor(
     @InjectModel(Product.name)
-    private readonly productModel: Model<Product>,
+    private readonly productModel: Model<ProductDocument>,
   ) {}
 
-  async create(data: Partial<Product>): Promise<Product> {
+  async create(data: Partial<Product>): Promise<ProductDocument> {
     return this.productModel.create(data)
   }
 

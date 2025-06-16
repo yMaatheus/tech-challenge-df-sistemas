@@ -16,4 +16,6 @@ export class Review extends Document {
   comment: string
 }
 
+export type ReviewDocument = Review & Document & { _id: Types.ObjectId }
+
 export const ReviewSchema = SchemaFactory.createForClass(Review)

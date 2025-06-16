@@ -1,9 +1,12 @@
-import { ProductRepository } from '@interface/mongoose/product/product.repository'
-import { Injectable } from '@nestjs/common'
+import { ProductRepository } from '@interface/repositories/product-repository'
+import { Inject, Injectable } from '@nestjs/common'
 
 @Injectable()
 export class ListProductsUseCase {
-  constructor(private readonly productRepository: ProductRepository) {}
+  constructor(
+    @Inject('ProductRepository')
+    private readonly productRepository: ProductRepository,
+  ) {}
 
   async execute() {
     return this.productRepository.findAll()

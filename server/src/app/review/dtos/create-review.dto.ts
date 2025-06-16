@@ -1,5 +1,6 @@
 import { IsString, IsNotEmpty, IsNumber, Min, Max } from 'class-validator'
 import { ApiProperty } from '@nestjs/swagger'
+import { Types } from 'mongoose'
 
 export class CreateReviewDto {
   @ApiProperty({
@@ -8,7 +9,7 @@ export class CreateReviewDto {
   })
   @IsString({ message: 'Product ID must be a string.' })
   @IsNotEmpty({ message: 'Product ID is required.' })
-  productId: string
+  productId: string | Types.ObjectId
 
   @ApiProperty({
     description: 'Name of the review author',

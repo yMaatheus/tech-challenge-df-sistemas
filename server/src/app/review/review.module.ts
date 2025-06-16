@@ -3,7 +3,7 @@ import { CreateReviewUseCase } from '@app/review/use-cases/create-review.usecase
 import { ListReviewsUseCase } from '@app/review/use-cases/list-reviews.usecase'
 import { RemoveReviewUseCase } from '@app/review/use-cases/remove-review.usecase'
 import { UpdateReviewUseCase } from '@app/review/use-cases/update-review.usecase'
-import { ReviewRepository } from '@interface/mongoose/review/review.repository'
+import { ReviewMongooseRepository } from '@interface/mongoose/review/review.repository'
 import { Review, ReviewSchema } from '@interface/mongoose/schemas/review.schema'
 import { Module } from '@nestjs/common'
 import { MongooseModule } from '@nestjs/mongoose'
@@ -13,7 +13,7 @@ import { MongooseModule } from '@nestjs/mongoose'
     MongooseModule.forFeature([{ name: Review.name, schema: ReviewSchema }]),
   ],
   providers: [
-    ReviewRepository,
+    { provide: 'ReviewRepository', useClass: ReviewMongooseRepository },
     CreateReviewUseCase,
     UpdateReviewUseCase,
     ListReviewsUseCase,
@@ -21,7 +21,6 @@ import { MongooseModule } from '@nestjs/mongoose'
     AverageRatingUseCase,
   ],
   exports: [
-    ReviewRepository,
     CreateReviewUseCase,
     UpdateReviewUseCase,
     ListReviewsUseCase,

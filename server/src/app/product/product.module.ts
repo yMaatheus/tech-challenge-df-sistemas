@@ -3,7 +3,7 @@ import { GetProductUseCase } from '@app/product/use-cases/get-product.usecase'
 import { ListProductsUseCase } from '@app/product/use-cases/list-products.usecase'
 import { RemoveProductUseCase } from '@app/product/use-cases/remove-product.usecase'
 import { UpdateProductUseCase } from '@app/product/use-cases/update-product.usecase'
-import { ProductRepository } from '@interface/mongoose/product/product.repository'
+import { ProductMongooseRepository } from '@interface/mongoose/product/product.repository'
 import {
   Product,
   ProductSchema,
@@ -16,7 +16,7 @@ import { MongooseModule } from '@nestjs/mongoose'
     MongooseModule.forFeature([{ name: Product.name, schema: ProductSchema }]),
   ],
   providers: [
-    ProductRepository,
+    { provide: 'ProductRepository', useClass: ProductMongooseRepository },
     CreateProductUseCase,
     UpdateProductUseCase,
     ListProductsUseCase,
