@@ -22,7 +22,7 @@ export function ProductAboutDetails({
     <Card>
       <CardHeader>
         <div className="flex justify-between items-start">
-          <div>
+          <div className="flex flex-col gap-2">
             <CardTitle className="text-2xl">{product?.name}</CardTitle>
             <CardDescription>
               Categoria: <Badge variant="outline">{product?.category}</Badge>
@@ -63,7 +63,7 @@ export function ProductAboutDetails({
           <div className="grid grid-cols-2 gap-4 pt-4">
             <div>
               <h3 className="font-medium mb-1">ID do Produto</h3>
-              <p className="text-sm text-muted-foreground">{product?._id}</p>
+              <p className="text-sm text-muted-foreground truncate">{product?._id}</p>
             </div>
             <div>
               <h3 className="font-medium mb-1">Data de Criação</h3>
