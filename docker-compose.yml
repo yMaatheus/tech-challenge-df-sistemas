@@ -1,0 +1,18 @@
+services:
+  web:
+    container_name: df_sistemas_web
+    build:
+      context: ./client
+      args:
+        VITE_API_URL: "http://localhost:3333"
+    ports:
+      - "8080:80"
+  api:
+    container_name: df_sistemas_api
+    restart: on-failure
+    build:
+      context: ./server
+    env_file:
+      - "./server/.env.local"
+    ports:
+      - "3333:3333"
