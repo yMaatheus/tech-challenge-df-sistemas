@@ -1,6 +1,13 @@
 import { GetProductUseCase } from '@app/product/use-cases/get-product.usecase'
-import { Controller, Get, Param, NotFoundException } from '@nestjs/common'
+import {
+  Controller,
+  Get,
+  Param,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common'
 import { ApiTags, ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger'
+import { isIdValid } from 'src/utils/id-validator'
 
 @ApiTags('Products')
 @Controller('products')
@@ -13,6 +20,10 @@ export class GetProductController {
   @ApiResponse({ status: 200, description: 'Product found.' })
   @ApiResponse({ status: 404, description: 'Product not found.' })
   async handle(@Param('id') id: string) {
+    if (!isIdValid(id)) {
+      throw new BadRequestException('Invalid ID')
+    }
+
     const product = await this.getProduct.execute(id)
 
     if (!product) {

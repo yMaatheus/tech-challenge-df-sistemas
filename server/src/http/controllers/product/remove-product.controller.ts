@@ -1,6 +1,13 @@
 import { RemoveProductUseCase } from '@app/product/use-cases/remove-product.usecase'
-import { Controller, Delete, Param, NotFoundException } from '@nestjs/common'
+import {
+  Controller,
+  Delete,
+  Param,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common'
 import { ApiTags, ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger'
+import { isIdValid } from 'src/utils/id-validator'
 
 @ApiTags('Products')
 @Controller('products')
@@ -13,6 +20,10 @@ export class RemoveProductController {
   @ApiResponse({ status: 200, description: 'Product deleted successfully.' })
   @ApiResponse({ status: 404, description: 'Product not found.' })
   async handle(@Param('id') id: string) {
+    if (!isIdValid(id)) {
+      throw new BadRequestException('Invalid ID')
+    }
+
     const removed = await this.removeProduct.execute(id)
 
     if (!removed) {
