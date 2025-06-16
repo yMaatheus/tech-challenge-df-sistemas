@@ -14,7 +14,6 @@ export const useFetch = <T extends any, P = void>({
   const [data, setData] = useState<T>();
 
   const handleFetch = useCallback(async () => {
-    setStatus(FetchStatus.LOADING);
     const response = await callback(params);
     setStatus(FetchStatus.SUCCESS);
     setData(response);

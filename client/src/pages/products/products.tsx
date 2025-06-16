@@ -14,9 +14,15 @@ import { Header } from "@/components/app/header";
 import { ProductForm } from "@/components/app/product-form";
 import { ProductListSkeleton } from "@/components/app/product-list-skeleton";
 import { ProductListTable } from "@/components/app/product-list-table";
+import { useProduct } from "@/contexts/use-product";
 
 export function ProductsPage() {
-  const { isLoading, data: products } = useFetch<IProduct[]>({
+  const { handleCreateProduct } = useProduct();
+  const {
+    isLoading,
+    data: products,
+    refetch,
+  } = useFetch<IProduct[]>({
     callback: fetchProducts,
     params: undefined,
   });
@@ -39,7 +45,10 @@ export function ProductsPage() {
           <div className="flex-1 flex justify-end mb-4">
             <ProductForm
               submit={async (product) => {
-                console.log("create product: ", product);
+                const result = await handleCreateProduct(product);
+                await refetch();
+
+                return result;
               }}
               triggerBtn={
                 <Button>
@@ -55,7 +64,7 @@ export function ProductsPage() {
           {isLoading ? (
             <ProductListSkeleton />
           ) : (
-            <ProductListTable products={products} />
+            <ProductListTable products={products} refetch={refetch} />
           )}
         </CardContent>
       </Card>

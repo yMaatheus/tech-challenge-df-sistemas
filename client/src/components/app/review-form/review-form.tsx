@@ -45,7 +45,7 @@ export type ReviewSubmit = {
 interface Props {
   productId: string;
   review?: IReview;
-  submit: (review: ReviewSubmit) => Promise<void>;
+  submit: (review: ReviewSubmit) => Promise<IReview | null>;
   triggerBtn: ReactNode;
 }
 

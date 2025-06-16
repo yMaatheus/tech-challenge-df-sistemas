@@ -17,7 +17,12 @@ import { ProductListEmpty } from "@/components/app/product-list-empty";
 import { useProduct } from "@/contexts/use-product";
 import { DeleteAlertDialog } from "@/components/app/delete-alert-dialog";
 
-export function ProductListTable({ products }: { products?: IProduct[] }) {
+interface Props {
+  products?: IProduct[];
+  refetch: () => Promise<void>;
+}
+
+export function ProductListTable({ products, refetch }: Props) {
   const { handleUpdateProduct, handleDeleteProduct } = useProduct();
 
   return (
@@ -56,7 +61,12 @@ export function ProductListTable({ products }: { products?: IProduct[] }) {
 
                 <ProductForm
                   product={product}
-                  submit={handleUpdateProduct}
+                  submit={async (product) => {
+                    const result = await handleUpdateProduct(product);
+                    await refetch();
+
+                    return result;
+                  }}
                   triggerBtn={
                     <Button variant="outline" size="icon">
                       <Pencil className="h-4 w-4" />
@@ -68,7 +78,10 @@ export function ProductListTable({ products }: { products?: IProduct[] }) {
                 <DeleteAlertDialog
                   title="Excluir produto"
                   description={`Tem certeza que deseja excluir o produto "${product?.name}"? Esta ação não pode ser desfeita e todas as avaliações associadas também serão excluídas.`}
-                  onClick={() => handleDeleteProduct(product._id)}
+                  onClick={async () => {
+                    await handleDeleteProduct(product._id);
+                    await refetch();
+                  }}
                   triggerBtn={
                     <Button variant="outline" size="icon">
                       <Trash2 className="h-4 w-4" />
