@@ -72,7 +72,8 @@
     ],
     "moduleNameMapper": {
       "^@interface/(.*)$": "<rootDir>/interface/$1",
-      "^@app/(.*)$": "<rootDir>/app/$1"
+      "^@app/(.*)$": "<rootDir>/app/$1",
+      "^@utils/(.*)$": "<rootDir>/utils/$1"
     },
     "rootDir": "src",
     "testRegex": ".*\\.spec\\.ts$",

@@ -19,9 +19,6 @@
     "noFallthroughCasesInSwitch": false,
     "allowJs": true,
     "paths": {
-      "@database/*": [
-        "./src/database/*"
-      ],
       "@http/*": [
         "./src/http/*"
       ],
@@ -31,8 +28,8 @@
       "@interface/*": [
         "./src/interface/*"
       ],
-      "@common/*": [
-        "src/common/*"
+      "@utils/*": [
+        "src/utils/*"
       ],
     }
   }

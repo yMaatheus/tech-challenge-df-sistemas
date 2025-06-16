@@ -7,7 +7,7 @@ import {
   BadRequestException,
 } from '@nestjs/common'
 import { ApiTags, ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger'
-import { isIdValid } from 'src/utils/id-validator'
+import { isIdValid } from '@utils/id-validator'
 
 @ApiTags('Products')
 @Controller('products')

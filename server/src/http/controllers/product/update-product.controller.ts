@@ -15,7 +15,7 @@ import {
   ApiResponse,
   ApiBody,
 } from '@nestjs/swagger'
-import { isIdValid } from 'src/utils/id-validator'
+import { isIdValid } from '@utils/id-validator'
 
 @ApiTags('Products')
 @Controller('products')
