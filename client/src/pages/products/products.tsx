@@ -1,4 +1,3 @@
-import { UserNav } from "@/components/app/user-nav";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -34,24 +33,17 @@ import {
 import { useFetch } from "@/hooks/use-fetch";
 import type { IProduct } from "@/common";
 import { fetchProducts } from "@/services/fetch-products";
+import { Header } from "@/components/app/header";
 
 export function ProductsPage() {
-  const { isLoading, data: products } = useFetch<IProduct>({
+  const { isLoading, data: products } = useFetch<IProduct[]>({
     callback: fetchProducts,
+    params: undefined
   });
 
   return (
     <div className="min-h-screen bg-background p-5 flex flex-col gap-8">
-      <header className="bg-card text-card-foreground flex justify-between gap-6 rounded-xl border px-3 py-6 shadow-sm">
-        <section className="grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6">
-          <CardTitle className="text-foreground">Produtos</CardTitle>
-          <CardDescription className="text-muted-foreground">
-            Gerencie os produtos da sua loja
-          </CardDescription>
-        </section>
-
-        <UserNav />
-      </header>
+      <Header />
 
       <Card className="min-h-96">
         <CardHeader>
@@ -84,14 +76,14 @@ export function ProductsPage() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {products.length === 0 ? (
+                {products?.length === 0 ? (
                   <TableRow>
                     <TableCell colSpan={5} className="text-center py-4">
                       Nenhum produto encontrado
                     </TableCell>
                   </TableRow>
                 ) : (
-                  products.map((produto) => (
+                  products?.map((produto) => (
                     <TableRow key={produto._id}>
                       <TableCell className="font-medium">
                         {produto.name}
@@ -106,7 +98,7 @@ export function ProductsPage() {
                       </TableCell>
                       <TableCell className="text-right space-x-2">
                         <Button variant="outline" size="icon" asChild>
-                          <Link to={`/produtos/${produto._id}`}>
+                          <Link to={`/products/${produto._id}`}>
                             <Eye className="h-4 w-4" />
                             <span className="sr-only">Ver detalhes</span>
                           </Link>
