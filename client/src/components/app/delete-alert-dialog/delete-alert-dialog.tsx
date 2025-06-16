@@ -1,4 +1,3 @@
-import type { IProduct } from "@/common";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,34 +9,32 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { useProduct } from "@/contexts/use-product";
 import type { ReactNode } from "react";
 
-export function DeleteProductAlertDialog({
-  product,
-  triggerBtn,
-}: {
-  product?: IProduct;
+interface Props {
+  title: string;
+  description: string;
+  onClick: () => void;
   triggerBtn: ReactNode;
-}) {
-  const { handleDeleteProduct } = useProduct();
+}
 
+export function DeleteAlertDialog({ triggerBtn, title, description, onClick }: Props) {
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>{triggerBtn}</AlertDialogTrigger>
+      <AlertDialogTrigger asChild>
+        {triggerBtn}
+      </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Excluir produto</AlertDialogTitle>
+          <AlertDialogTitle>{title}</AlertDialogTitle>
           <AlertDialogDescription>
-            Tem certeza que deseja excluir o produto "{product?.name}"? Esta
-            ação não pode ser desfeita e todas as avaliações associadas também
-            serão excluídas.
+            {description}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancelar</AlertDialogCancel>
           <AlertDialogAction
-            onClick={() => handleDeleteProduct(product?._id!)}
+            onClick={onClick}
             className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
           >
             Excluir
