@@ -36,7 +36,7 @@ export function DetailsProductPage() {
     callback: fetchProductById,
     params: productId!,
   });
-  const { status: reviewsAverageStatus, data: reviewsAverage } = useFetch<getReviewsAverageResponse, string>({
+  const { data: reviewsAverage } = useFetch<getReviewsAverageResponse, string>({
     callback: getReviewsAverage,
     params: productId!,
   });

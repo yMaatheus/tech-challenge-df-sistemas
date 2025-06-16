@@ -8,7 +8,7 @@ export const ProductContext = createContext({} as ContextType);
 
 export const ProductProvider = ({ children }: PropsWithChildren) => {
   async function handleDeleteProduct(productId: string) {
-    console.log('hello world');
+    console.log('hello world ' + productId);
   }
 
   const value = {
