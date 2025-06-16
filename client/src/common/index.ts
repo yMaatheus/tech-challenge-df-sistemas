@@ -15,6 +15,7 @@ export interface IProduct {
 }
 
 export interface IReview {
+  _id: string;
   productId: string;
   author: string;
   rating: number;
