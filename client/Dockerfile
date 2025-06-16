@@ -30,6 +30,8 @@ RUN rm -rf /usr/share/nginx/html/*
 # Copy the build files to nginx
 COPY --from=build /app/dist /usr/share/nginx/html
 
+COPY app.conf /etc/nginx/conf.d/app.conf
+
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
