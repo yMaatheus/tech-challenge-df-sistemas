@@ -1,30 +1,34 @@
 import { FetchStatus } from "@/common";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
-export type UseFetchProps<T extends object> = {
-  callback: () => Promise<T[]>;
+export type UseFetchProps<T extends object, P = void> = {
+  callback: (params: P) => Promise<T>;
+  params: P;
 };
 
-export const useFetch = <T extends object>({ callback }: UseFetchProps<T>) => {
+export const useFetch = <T extends object, P = void>({
+  callback,
+  params,
+}: UseFetchProps<T, P>) => {
   const [status, setStatus] = useState(FetchStatus.LOADING);
-  const [data, setData] = useState<T[]>([]);
+  const [data, setData] = useState<T>();
 
-  async function handleFetch() {
-    const response = await callback();
-
-    setStatus(FetchStatus.SUCCESS)
-    setData(response)
-  }
+  const handleFetch = useCallback(async () => {
+    setStatus(FetchStatus.LOADING);
+    const response = await callback(params);
+    setStatus(FetchStatus.SUCCESS);
+    setData(response);
+  }, [callback, params]);
 
   useEffect(() => {
-    handleFetch()
-  }, [])
+    handleFetch();
+  }, [handleFetch]);
 
   return {
     isLoading: status === FetchStatus.LOADING,
     status,
     data,
     setStatus,
-    refetch: handleFetch
+    refetch: handleFetch,
   };
-}
+};
