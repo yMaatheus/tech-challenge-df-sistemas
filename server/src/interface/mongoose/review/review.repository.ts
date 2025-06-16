@@ -18,13 +18,24 @@ export class ReviewMongooseRepository implements ReviewRepository {
   ) {}
 
   async create(data: CreateReviewDto): Promise<ReviewDocument> {
-    return this.reviewModel.create(data)
+    const result = this.reviewModel.create({
+      productId: new Types.ObjectId(data.productId),
+      author: data.author,
+      rating: data.rating,
+      comment: data.comment,
+    })
+
+    return result
   }
 
   async findByProduct(productId: string | Types.ObjectId): Promise<Review[]> {
-    return this.reviewModel
-      .find({ productId: new Types.ObjectId(productId) })
-      .exec()
+    const id = typeof productId === 'string'
+      ? new Types.ObjectId(productId)
+      : productId
+
+    const result = await this.reviewModel.find({ productId: id }).exec()
+
+    return result
   }
 
   async findById(id: string): Promise<Review | null> {
@@ -32,7 +43,16 @@ export class ReviewMongooseRepository implements ReviewRepository {
   }
 
   async update(id: string, data: Partial<Review>): Promise<Review | null> {
-    return this.reviewModel.findByIdAndUpdate(id, data, { new: true }).exec()
+    const body = {
+      ...data,
+      productId: data.productId
+        ? new Types.ObjectId(data.productId)
+        : undefined,
+    }
+
+    const result = this.reviewModel.findByIdAndUpdate(id, body, { new: true }).exec()
+
+    return result
   }
 
   async remove(id: string): Promise<Review | null> {
