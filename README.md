@@ -1,4 +1,4 @@
-# Testes técnico DF Sistemas
+# Teste técnico DF Sistemas
 
 ## ✨ Funcionalidades desenvolvidas
 
@@ -24,6 +24,17 @@
 - **Validação de dados** com `class-validator` e mensagens de erro customizadas
 - **Testes automatizados** com Jest para repository, com ```80% de cobertura```, use cases e controllers
 - **Swagger** em `/v1/docs` com exemplos e contratos
+
+---
+
+## Deploy
+
+- **URL de Produção:**  
+  - Backend NestJS(Fly.io): [https://df-sistemas-nestjs.fly.dev/v1](https://df-sistemas-nestjs.fly.dev/v1)
+  - Frontend Vite React(Vercel): [https://dfcom.ymaatheus.dev/](https://dfcom.ymaatheus.dev/)
+ 
+  ---
+  > Documentação Swagger: [https://expenses-tech-challenge.fly.dev/v1/docs](https://df-sistemas-nestjs.fly.dev/v1/docs)
 
 ---
 
