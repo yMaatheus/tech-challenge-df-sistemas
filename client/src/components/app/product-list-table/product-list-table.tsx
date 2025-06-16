@@ -7,7 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Eye, Pencil } from "lucide-react";
+import { Eye, Pencil, Trash2 } from "lucide-react";
 import { Link } from "react-router";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
@@ -15,8 +15,11 @@ import type { IProduct } from "@/common";
 import { ProductForm } from "@/components/app/product-form";
 import { ProductListEmpty } from "@/components/app/product-list-empty";
 import { DeleteProductAlertDialog } from "@/components/app/delete-product-alert-dialog/delete-product-alert-dialog";
+import { useProduct } from "@/contexts/use-product";
 
-export function ProductListTable({ products }: { products?: IProduct[]}) {
+export function ProductListTable({ products }: { products?: IProduct[] }) {
+  const { handleUpdateProduct } = useProduct();
+
   return (
     <Table>
       <TableHeader>
@@ -53,9 +56,7 @@ export function ProductListTable({ products }: { products?: IProduct[]}) {
 
                 <ProductForm
                   product={product}
-                  submit={async (product) => {
-                    console.log("create product: ", product);
-                  }}
+                  submit={handleUpdateProduct}
                   triggerBtn={
                     <Button variant="outline" size="icon">
                       <Pencil className="h-4 w-4" />
@@ -64,7 +65,15 @@ export function ProductListTable({ products }: { products?: IProduct[]}) {
                   }
                 />
 
-                <DeleteProductAlertDialog product={product} />
+                <DeleteProductAlertDialog
+                  product={product}
+                  triggerBtn={
+                    <Button variant="outline" size="icon">
+                      <Trash2 className="h-4 w-4" />
+                      <span className="sr-only">Excluir</span>
+                    </Button>
+                  }
+                />
               </TableCell>
             </TableRow>
           ))
