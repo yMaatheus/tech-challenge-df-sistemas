@@ -1,12 +1,12 @@
 import { FetchStatus } from "@/common";
 import { useEffect, useState, useCallback } from "react";
 
-export type UseFetchProps<T extends object, P = void> = {
+export type UseFetchProps<T extends any, P = void> = {
   callback: (params: P) => Promise<T>;
   params: P;
 };
 
-export const useFetch = <T extends object, P = void>({
+export const useFetch = <T extends any, P = void>({
   callback,
   params,
 }: UseFetchProps<T, P>) => {

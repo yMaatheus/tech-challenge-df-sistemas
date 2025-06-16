@@ -19,7 +19,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Eye, Pencil, Trash2 } from "lucide-react";
+import { Eye, Pencil, Plus, Trash2 } from "lucide-react";
 import { Link } from "react-router";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
@@ -38,7 +38,7 @@ import { Header } from "@/components/app/header";
 export function ProductsPage() {
   const { isLoading, data: products } = useFetch<IProduct[]>({
     callback: fetchProducts,
-    params: undefined
+    params: undefined,
   });
 
   return (
@@ -46,14 +46,25 @@ export function ProductsPage() {
       <Header />
 
       <Card className="min-h-96">
-        <CardHeader>
-          <CardTitle className="text-foreground">
-            Listagem de Produtos
-          </CardTitle>
-          <CardDescription>
-            Gerencie os produtos disponíveis na sua loja.
-          </CardDescription>
-        </CardHeader>
+        <div className="flex justify-between px-6">
+          <CardHeader className="flex-1 px-0">
+            <CardTitle className="text-foreground">
+              Listagem de Produtos
+            </CardTitle>
+            <CardDescription>
+              Gerencie os produtos disponíveis na sua loja.
+            </CardDescription>
+          </CardHeader>
+
+          <div className="flex-1 flex justify-end mb-4">
+            <Button
+            // onClick={abrirModalCriar}
+            >
+              <Plus className="mr-2 h-4 w-4" />
+              Novo Produto
+            </Button>
+          </div>
+        </div>
 
         <CardContent>
           {isLoading ? (
