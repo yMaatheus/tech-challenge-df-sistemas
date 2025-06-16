@@ -57,7 +57,7 @@ export function ProductAboutDetails({
         <div className="space-y-4">
           <div>
             <h3 className="font-medium mb-2">Descrição</h3>
-            <p className="text-muted-foreground">{product?.description}</p>
+            <p className="w-2/3 text-muted-foreground">{product?.description}</p>
           </div>
 
           <div className="grid grid-cols-2 gap-4 pt-4">

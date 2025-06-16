@@ -36,7 +36,7 @@ const reviewSchema = z.object({
 export type ReviewFormData = z.infer<typeof reviewSchema>;
 
 export type ReviewSubmit = {
-  id: string;
+  id?: string;
   productId: string;
   author: string;
   rating: number;
@@ -80,10 +80,8 @@ export function ReviewForm({ productId, review, submit, triggerBtn }: Props) {
 
   async function onSubmit(values: ReviewFormData) {
     try {
-      if (!review?._id) return;
-
       await submit({
-        id: review._id,
+        id: review?._id,
         productId,
         ...values
       });

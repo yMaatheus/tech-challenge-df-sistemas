@@ -78,7 +78,7 @@ export function DetailsProductPage() {
     <div className="min-h-screen bg-background p-5 flex flex-col gap-8">
       <Header />
 
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-col justify-between items-start gap-4 mb-6 md:flex-row md:items-center md:gap-0">
         <Button variant="outline" asChild>
           <Link to="/products">
             <ArrowLeft className="mr-2 h-4 w-4" />
